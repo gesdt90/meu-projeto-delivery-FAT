@@ -1,0 +1,8 @@
+INSERT INTO RESTAURANTE (NOME, ATIVO)
+VALUES ('Pizzaria Bella Massa', true);
+
+INSERT INTO RESTAURANTE (NOME, ATIVO)
+VALUES ('Hamburgueria Top Burger', true);
+
+INSERT INTO RESTAURANTE (NOME, ATIVO)
+VALUES ('Sushi House', false);
