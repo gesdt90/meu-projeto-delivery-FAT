@@ -11,6 +11,7 @@ public class Pedido {
 
     private String status;
     private Double valorTotal;
+    
 
     public Long getId() {
         return id;

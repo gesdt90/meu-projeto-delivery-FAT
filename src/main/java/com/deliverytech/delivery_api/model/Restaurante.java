@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.List;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Restaurante {
@@ -22,7 +24,8 @@ public class Restaurante {
         this.nome = nome;
         this.ativo = ativo;
     }
-
+    @OneToMany(mappedBy = "restaurante")
+    private List<Produto> produtos;
     public Long getId() {
         return id;
     }
