@@ -1,6 +1,8 @@
 package com.deliverytech.delivery_api.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Cliente {
@@ -9,8 +11,13 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
+
+    @Email(message = "E-mail inválido")
+    @NotBlank(message = "O e-mail é obrigatório")
     private String email;
+
     private boolean ativo;
 
     public Long getId() {

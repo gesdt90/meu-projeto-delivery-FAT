@@ -2,16 +2,13 @@ package com.deliverytech.delivery_api.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.deliverytech.delivery_api.model.Restaurante;
 import com.deliverytech.delivery_api.service.RestauranteService;
 
 @RestController
+@RequestMapping("/restaurantes")
 public class RestauranteController {
 
     private final RestauranteService service;
@@ -20,19 +17,40 @@ public class RestauranteController {
         this.service = service;
     }
 
-    @GetMapping("/restaurantes")
+    // Listar todos
+    @GetMapping
     public List<Restaurante> listar() {
         return service.listarTodos();
     }
 
-    @GetMapping("/restaurantes/{id}")
+    // Buscar por ID
+    @GetMapping("/{id}")
     public Restaurante buscarPorId(@PathVariable Long id) {
-    return service.buscarPorId(id);
+        return service.buscarPorId(id);
     }
 
-    @PostMapping("/restaurantes")
+    // Cadastrar
+    @PostMapping
     public Restaurante cadastrar(@RequestBody Restaurante restaurante) {
-    return service.salvar(restaurante);
+        return service.salvar(restaurante);
     }
-    
+
+    // Atualizar
+    @PutMapping("/{id}")
+    public Restaurante atualizar(@PathVariable Long id,
+                                 @RequestBody Restaurante restaurante) {
+        return service.atualizar(id, restaurante);
+    }
+
+    // Inativar
+    @DeleteMapping("/{id}")
+    public void inativar(@PathVariable Long id) {
+        service.inativar(id);
+    }
+
+    // Ativar
+    @PatchMapping("/{id}/ativar")
+    public void ativar(@PathVariable Long id) {
+        service.ativar(id);
+    }
 }

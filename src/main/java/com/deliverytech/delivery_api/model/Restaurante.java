@@ -1,11 +1,7 @@
 package com.deliverytech.delivery_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import java.util.List;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Restaurante {
@@ -15,17 +11,26 @@ public class Restaurante {
     private Long id;
 
     private String nome;
+
+    private String categoria;
+
+    private Double avaliacao;
+
     private boolean ativo;
+
+    @OneToMany(mappedBy = "restaurante")
+    private List<Produto> produtos;
 
     public Restaurante() {
     }
 
-    public Restaurante(String nome, boolean ativo) {
+    public Restaurante(String nome, String categoria, Double avaliacao, boolean ativo) {
         this.nome = nome;
+        this.categoria = categoria;
+        this.avaliacao = avaliacao;
         this.ativo = ativo;
     }
-    @OneToMany(mappedBy = "restaurante")
-    private List<Produto> produtos;
+
     public Long getId() {
         return id;
     }
@@ -34,15 +39,39 @@ public class Restaurante {
         return nome;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public Double getAvaliacao() {
+        return avaliacao;
+    }
+
     public boolean isAtivo() {
         return ativo;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setAvaliacao(Double avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }

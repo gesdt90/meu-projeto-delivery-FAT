@@ -11,13 +11,25 @@ public class Produto {
 
     private String nome;
 
+    private String categoria;
+
     private Double preco;
+
+    private boolean disponivel;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
     private Restaurante restaurante;
 
     public Produto() {
+    }
+
+    public Produto(String nome, String categoria, Double preco, boolean disponivel, Restaurante restaurante) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.disponivel = disponivel;
+        this.restaurante = restaurante;
     }
 
     public Long getId() {
@@ -28,8 +40,16 @@ public class Produto {
         return nome;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
     public Double getPreco() {
         return preco;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
     public Restaurante getRestaurante() {
@@ -40,8 +60,16 @@ public class Produto {
         this.nome = nome;
     }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public void setRestaurante(Restaurante restaurante) {
